@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Duceac_Ioana_Lab2.Migrations
 {
     [DbContext(typeof(Duceac_Ioana_Lab2Context))]
-    [Migration("20261017163719_Authors")]
-    partial class Authors
+    [Migration("20261022143926_RemoveOldAutorColumn")]
+    partial class RemoveOldAutorColumn
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

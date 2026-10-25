@@ -1,6 +1,5 @@
-
 @page
-@model Duceac_Ioana_Lab2.Pages.BookPages.DetailsModel
+@model Egri_Rares_Lab2.Pages.BookPages.DetailsModel
 
 @{
     ViewData["Title"] = "Details";
@@ -39,6 +38,23 @@
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Book.PublishingDate)
+        </dd>
+
+        <!-- Sectiunea adaugata pentru Categorii -->
+        <dt class="col-sm-2">Categorii</dt>
+        <dd class="col-sm-10">
+            @if (Model.Book.BookCategories != null && Model.Book.BookCategories.Any())
+            {
+                foreach (var category in Model.Book.BookCategories)
+                {
+                    @category.Category.CategoryName
+                    <br />
+                }
+            }
+            else
+            {
+                <span>Fără categorie</span>
+            }
         </dd>
     </dl>
 </div>

@@ -1,40 +1,43 @@
-
+using Duceac_Ioana_Lab2.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using Duceac_Ioana_Lab2.Models;
 
-namespace Duceac_Ioana_Lab2.Pages.BookPages;
-
-public class DetailsModel : PageModel
+namespace Egri_Rares_Lab2.Pages.BookPages
 {
-    private readonly Duceac_Ioana_Lab2Context _context;
-
-    public DetailsModel(Duceac_Ioana_Lab2Context context)
+    public class DetailsModel : PageModel
     {
-        _context = context;
-    }
+        private readonly Duceac_Ioana_Lab2Context _context;
 
-    public Book Book { get; set; } = default!;
-
-    public async Task<IActionResult> OnGetAsync(int? id)
-    {
-        if (id is null)
+        public DetailsModel(Duceac_Ioana_Lab2Context context)
         {
-            return NotFound();
+            _context = context;
         }
 
-        var book = await _context.Book
-            .Include(b => b.Authors)
-            .FirstOrDefaultAsync(b => b.ID == id);
+        public Book Book { get; set; } = default!;
 
-        if (book is null)
+        public async Task<IActionResult> OnGetAsync(int? id)
         {
-            return NotFound();
+            if (id is null)
+            {
+                return NotFound();
+            }
+
+            var book = await _context.Book
+                .Include(b => b.Authors)
+                .Include(b => b.Publisher)
+                .Include(b => b.BookCategories)
+                    .ThenInclude(bc => bc.Category)
+                .FirstOrDefaultAsync(b => b.ID == id);
+
+            if (book is null)
+            {
+                return NotFound();
+            }
+
+            Book = book;
+
+            return Page();
         }
-
-        Book = book;
-
-        return Page();
     }
 }

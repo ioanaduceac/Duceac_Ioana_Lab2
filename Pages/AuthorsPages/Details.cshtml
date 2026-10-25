@@ -1,0 +1,24 @@
+﻿@page "{id:int}"
+@model Duceac_Ioana_Lab2.Pages.AuthorsPages.DetailsModel
+
+@{
+    ViewData["Title"] = "Author Details";
+}
+
+<h1>Author Details</h1>
+
+<div>
+    <h4>Authors</h4>
+    <hr />
+
+    <dl class="row">
+        <dt class="col-sm-3">First Name</dt>
+        <dd class="col-sm-9">@Model.Authors.FirstName</dd>
+
+        <dt class="col-sm-3">Last Name</dt>
+        <dd class="col-sm-9">@Model.Authors.LastName</dd>
+    </dl>
+</div>
+
+<a asp-page="./Edit" asp-route-id="@Model.Authors.ID" class="btn btn-primary">Edit</a>
+<a asp-page="./Index" class="btn btn-secondary">Back to List</a>

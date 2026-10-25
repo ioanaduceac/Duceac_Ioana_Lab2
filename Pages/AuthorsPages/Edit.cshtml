@@ -1,0 +1,39 @@
+﻿@page "{id:int}"
+@model Duceac_Ioana_Lab2.Pages.AuthorsPages.EditModel
+
+@{
+    ViewData["Title"] = "Edit Author";
+}
+
+<h1>Edit Author</h1>
+
+<h4>Authors</h4>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <input type="hidden" asp-for="Authors.ID" />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Authors.FirstName" class="control-label">First Name</label>
+                <input asp-for="Authors.FirstName" class="form-control" />
+                <span asp-validation-for="Authors.FirstName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Authors.LastName" class="control-label">Last Name</label>
+                <input asp-for="Authors.LastName" class="form-control" />
+                <span asp-validation-for="Authors.LastName" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Save</button>
+            <a asp-page="./Index" class="btn btn-secondary">Back to List</a>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
