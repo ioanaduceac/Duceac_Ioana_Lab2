@@ -1,4 +1,4 @@
-﻿@page
+﻿@page "{id:int?}"
 @model Duceac_Ioana_Lab2.Pages.Publishers.IndexModel
 
 <h1>Publishers</h1>
@@ -22,6 +22,7 @@
                 <td>@item.ID</td>
                 <td>@item.PublisherName</td>
                 <td>
+                    <a asp-page="./Index" asp-route-id="@item.ID">Select</a> |
                     <a asp-page="Edit" asp-route-id="@item.ID">Edit</a> |
                     <a asp-page="Details" asp-route-id="@item.ID">Details</a> |
                     <a asp-page="Delete" asp-route-id="@item.ID">Delete</a>
@@ -30,3 +31,20 @@
         }
     </tbody>
 </table>
+@if (Model.PublisherData.Books != null)
+{
+    <h3>Books Edited by Selected Publisher</h3>
+
+    <table class="table">
+        <tbody>
+            @foreach (var b in Model.PublisherData.Books)
+            {
+                <tr>
+                    <td>@b.title</td>
+                    <td>@b.Authors?.FullName</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
